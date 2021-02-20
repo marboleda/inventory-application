@@ -10,6 +10,13 @@ var usersRouter = require('./routes/users');
 var testAPIRouter = require('./routes/testAPI'); //FOR TESTING, REMOVE LATER
 
 var app = express();
+//Set up mongoose connection
+const secrets = require('./secrets');
+const mongoose = require('mongoose');
+const mongoDB = `mongodb+srv://${secrets.username}:${secrets.password}@cluster0.fevm6.mongodb.net/inventory_application?retryWrites=true&w=majority`
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true});
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
