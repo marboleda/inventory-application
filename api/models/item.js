@@ -10,8 +10,14 @@ const ItemSchema = new Schema(
         price: {type: Number},
         category: {type: Schema.Types.ObjectId, ref: 'Category'},
         stock: {type: Number},
-        url: {type: String}
     }
 );
+
+// Virtual for item's URL
+ItemSchema
+.virtual('url')
+.get(() => {
+    return '/item/' + this._id;
+})
 
 module.exports = mongoose.model('Item', ItemSchema);
