@@ -7,6 +7,8 @@ const Grid = styled.ul`
     flex-direction: row;
     width: 100vw;
     justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding-left: 0px;
 `
 
 const HomepageGrid = (props) => {
@@ -16,7 +18,7 @@ const HomepageGrid = (props) => {
     return(
         <Grid className='HomepageGrid'>
             {categories.map((category) => {
-                return <li key={category._id}>{category.name}</li>
+                return <HomepageCategory id={category.id} category_name={category.name}></HomepageCategory>
             })}        
         </Grid>
     )
