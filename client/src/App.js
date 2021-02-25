@@ -4,34 +4,26 @@ import './App.css';
 
 const App = () => {
 
-  const [apiResponse, setApiResponse] = useState('')
+  const [indexData, setIndexData] = useState([])
 
-  const callAPI = () => {
-    fetch('http://localhost:9000/testAPI')
-      .then(res => res.text())
-      .then(res => setApiResponse(res));
+  const getIndexData = () => {
+    fetch('http://localhost:9000/')
+      .then(res => res.json())
+      .then(res => setIndexData(res));
   }
 
   useEffect(() => {
-    callAPI();
+    getIndexData();
   }, [])
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          {apiResponse}
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Got-It-All Grocers</h1>
+      <ul>
+        {indexData.map((category) => {
+          return <li key={category._id}>{category.name}</li>
+        })}
+      </ul>
     </div>
   );
 }
