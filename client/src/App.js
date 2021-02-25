@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import HomepageGrid from './components/HomepageGrid';
 
 const App = () => {
 
@@ -19,11 +19,7 @@ const App = () => {
   return (
     <div className="App">
       <h1>Got-It-All Grocers</h1>
-      <ul>
-        {indexData.map((category) => {
-          return <li key={category._id}>{category.name}</li>
-        })}
-      </ul>
+      <HomepageGrid categories={indexData}></HomepageGrid>
     </div>
   );
 }
