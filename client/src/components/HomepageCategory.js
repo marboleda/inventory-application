@@ -24,6 +24,15 @@ const CategoryImage = styled.img`
     height: 80%;
 `
 
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: #000000;
+
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
+`
+
 const getImage = (categoryName) => {
     switch(categoryName) {
         case 'Fruits & Vegetables':
@@ -53,10 +62,10 @@ const HomepageCategory = (props) => {
 
     return(
         <Category key={id} onClick={() => onCategoryClick(id)}>
-            <Link to={routeURL}>
+            <StyledLink to={routeURL}>
                 <CategoryImage src={getImage(category_name)} />
                 <h3>{category_name}</h3>
-            </Link>
+            </StyledLink>
         </Category>
     )
 
