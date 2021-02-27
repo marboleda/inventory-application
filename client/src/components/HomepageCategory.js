@@ -10,6 +10,7 @@ import international_foods_img from '../assets/images/category_international_foo
 const Category = styled.li`
     width: 200px;
     height: 200px;
+    margin-bottom: 50px;
     position: relative;
     list-style: none;
     &:hover {
