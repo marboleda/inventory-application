@@ -5,12 +5,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const categoryRouter = require('./routes/category');
 var testAPIRouter = require('./routes/testAPI'); //FOR TESTING, REMOVE LATER
 
 var app = express();
+
 //Set up mongoose connection
 const secrets = require('./secrets');
 const mongoose = require('mongoose');
