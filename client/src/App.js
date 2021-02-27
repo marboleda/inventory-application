@@ -12,6 +12,12 @@ const App = () => {
       .then(res => setIndexData(res));
   }
 
+  const getCategoryDetail = (categoryId) => {
+    fetch(`http://localhost:9000/category/${categoryId}`)
+      .then(res => res.json())
+      .then(res => console.log(res));
+  }
+
   useEffect(() => {
     getIndexData();
   }, [])
@@ -19,7 +25,10 @@ const App = () => {
   return (
     <div className="App">
       <h1>Got-It-All Grocers</h1>
-      <HomepageGrid categories={indexData}></HomepageGrid>
+      <HomepageGrid 
+        onCategoryClick={getCategoryDetail}
+        categories={indexData}>
+      </HomepageGrid>
     </div>
   );
 }

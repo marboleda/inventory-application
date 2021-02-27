@@ -13,12 +13,17 @@ const Grid = styled.ul`
 
 const HomepageGrid = (props) => {
 
-    const { categories } = props;
+    const { onCategoryClick, categories } = props;
 
     return(
         <Grid className='HomepageGrid'>
             {categories.map((category) => {
-                return <HomepageCategory id={category.id} category_name={category.name}></HomepageCategory>
+                return <HomepageCategory
+                            key={category._id} 
+                            id={category._id} 
+                            category_name={category.name}
+                            onCategoryClick={onCategoryClick} >
+                        </HomepageCategory>
             })}        
         </Grid>
     )

@@ -46,10 +46,10 @@ const getImage = (categoryName) => {
 
 const HomepageCategory = (props) => {
 
-    const { id, category_name } = props;
+    const { id, category_name, onCategoryClick } = props;
 
     return(
-        <Category key={id}>
+        <Category key={id} onClick={() => onCategoryClick(id)}>
             <CategoryImage src={getImage(category_name)} />
             <h3>{category_name}</h3>
         </Category>
