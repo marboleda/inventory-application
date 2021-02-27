@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import fruits_veg_img from '../assets/images/category_fruits_and_vegetables.jpeg';
 import dairy_eggs_img from '../assets/images/category_dairy_and_eggs.jpeg';
@@ -48,11 +49,14 @@ const getImage = (categoryName) => {
 const HomepageCategory = (props) => {
 
     const { id, category_name, onCategoryClick } = props;
+    const routeURL = `/category/${id}`;
 
     return(
         <Category key={id} onClick={() => onCategoryClick(id)}>
-            <CategoryImage src={getImage(category_name)} />
-            <h3>{category_name}</h3>
+            <Link to={routeURL}>
+                <CategoryImage src={getImage(category_name)} />
+                <h3>{category_name}</h3>
+            </Link>
         </Category>
     )
 
