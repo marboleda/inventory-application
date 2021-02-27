@@ -12,6 +12,9 @@ const Category = styled.li`
     height: 200px;
     position: relative;
     list-style: none;
+    &:hover {
+        cursor: pointer;
+    }
 `
 
 const CategoryImage = styled.img`
