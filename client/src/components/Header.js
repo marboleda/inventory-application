@@ -10,6 +10,7 @@ const HeaderText = styled.h1`
     padding-top: 2vh;
     padding-bottom: 2vh;
     margin-bottom: 20px;
+    min-height: 50px;
 `
 
 const Header = () => {

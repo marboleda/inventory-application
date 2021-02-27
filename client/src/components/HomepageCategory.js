@@ -22,6 +22,7 @@ const Category = styled.li`
 const CategoryImage = styled.img`
     width: 80%;
     height: 80%;
+    border-radius: 50%;
 `
 
 const StyledLink = styled(Link)`

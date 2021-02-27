@@ -7,6 +7,7 @@ const Grid = styled.ul`
     flex-direction: row;
     width: 100vw;
     justify-content: space-evenly;
+    align-items: flex-start;
     flex-wrap: wrap;
     padding-left: 0px;
 `
