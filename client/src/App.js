@@ -11,13 +11,13 @@ const App = () => {
   const [selectedCategoryDetail, setSelectedCategoryDetail] = useState({category: {_id: '0'}});
 
   const getIndexData = () => {
-    fetch('https://ancient-beyond-65897.herokuapp.com/', {mode: 'cors'})
+    fetch('https://localhost:9000/', {mode: 'cors'})
       .then(res => res.json())
       .then(res => setIndexData(res));
   }
 
   const getCategoryDetail = (categoryId) => {
-    fetch(`https://ancient-beyond-65897.herokuapp.com/category/${categoryId}`, {mode: 'cors'})
+    fetch(`https://localhost:9000/category/${categoryId}`, {mode: 'cors'})
       .then(res => res.json())
       .then(res => setSelectedCategoryDetail(res));
   }
