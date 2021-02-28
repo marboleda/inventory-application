@@ -14,9 +14,10 @@ var testAPIRouter = require('./routes/testAPI'); //FOR TESTING, REMOVE LATER
 var app = express();
 
 //Set up mongoose connection
-const secrets = require('./secrets');
+//const secrets = require('./secrets');
 const mongoose = require('mongoose');
-const mongoDB = `mongodb+srv://${secrets.username}:${secrets.password}@cluster0.fevm6.mongodb.net/inventory_application?retryWrites=true&w=majority`
+//const mongoDB = `mongodb+srv://${secrets.username}:${secrets.password}@cluster0.fevm6.mongodb.net/inventory_application?retryWrites=true&w=majority`
+const mongoDB = process.env.MONGODB_URI;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
