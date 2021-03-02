@@ -6,9 +6,10 @@ var logger = require('morgan');
 var cors = require('cors');
 
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 const categoryRouter = require('./routes/category');
+const itemRouter = require('./routes/item');
 var testAPIRouter = require('./routes/testAPI'); //FOR TESTING, REMOVE LATER
 
 var app = express();
@@ -36,6 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/category', categoryRouter);
+app.use('/item', itemRouter);
 app.use('/testAPI', testAPIRouter) //FOR TESTING, REMOVE LATER
 
 // catch 404 and forward to error handler
