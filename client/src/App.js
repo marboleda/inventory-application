@@ -1,19 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import styled from 'styled-components';
 import { BrowserRouter, Route, Switch} from 'react-router-dom';
 import HomepageGrid from './components/HomepageGrid';
 import Header from './components/Header';
 import CategoryDetail from './components/CategoryDetail'
 
+const LoadingMessage = styled.p`
+  color: #427d00;
+`;
+
 const App = () => {
 
-  const [indexData, setIndexData] = useState([])
+  const [indexData, setIndexData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedCategoryDetail, setSelectedCategoryDetail] = useState({category: {_id: '0'}});
 
   const getIndexData = () => {
     fetch('https://ancient-beyond-65897.herokuapp.com/', {mode: 'cors'})
       .then(res => res.json())
-      .then(res => setIndexData(res));
+      .then(res => { 
+        setIndexData(res);
+        setIsLoading(false);
+      });
   }
 
   const getCategoryDetail = (categoryId) => {
@@ -26,11 +35,14 @@ const App = () => {
     getIndexData();
   }, [])
 
+
+
   return (
     <div className="App">
       <BrowserRouter>
         <Header></Header>
         <Switch>
+          {isLoading ? <LoadingMessage>Loading Categories...</LoadingMessage> : null}
           <Route exact path='/'>
             <HomepageGrid 
               onCategoryClick={getCategoryDetail}
