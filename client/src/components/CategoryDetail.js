@@ -7,6 +7,14 @@ const Header = styled.h1`
 const CategoryItems = styled.ul`
 `;
 
+const ItemLink = styled.a`
+    color: #000000;
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+`;
+
 const CategoryDetail = (props) => {
 
     const { categoryData } = props;
@@ -18,7 +26,7 @@ const CategoryDetail = (props) => {
                 {categoryData.category_items.map((categoryItem) => {
                     return <li
                                 key={categoryItem._id}  >
-                                    {categoryItem.name} - {categoryItem.stock} in stock
+                                    <ItemLink href={`/item/${categoryItem._id}`}>{categoryItem.name}</ItemLink> - {categoryItem.stock} in stock
                             </li>
                 })}                
             </CategoryItems>

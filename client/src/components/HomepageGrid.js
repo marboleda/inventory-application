@@ -23,7 +23,7 @@ const HomepageGrid = (props) => {
                             key={category._id} 
                             id={category._id} 
                             category_name={category.name}
-                            onCategoryClick={onCategoryClick} >
+                            onCategoryClick={onCategoryClick}>
                         </HomepageCategory>
             })}        
         </Grid>

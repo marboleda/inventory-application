@@ -12,9 +12,20 @@ const LoadingMessage = styled.p`
 
 const App = () => {
 
+  const emptyItemObject = {
+    _id: '0',
+    name: '',
+    weight_num: 0,
+    weight_unit: "g",
+    price: 0,
+    category: '0',
+    stock: 0
+  }
+
   const [indexData, setIndexData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedCategoryDetail, setSelectedCategoryDetail] = useState({category: {_id: '0'}});
+  const [selectedItemDetail, setSelectedItemDetail] = useState(emptyItemObject);
 
   const getIndexData = () => {
     fetch('https://ancient-beyond-65897.herokuapp.com/', {mode: 'cors'})
@@ -29,6 +40,12 @@ const App = () => {
     fetch(`https://ancient-beyond-65897.herokuapp.com/category/${categoryId}`, {mode: 'cors'})
       .then(res => res.json())
       .then(res => setSelectedCategoryDetail(res));
+  }
+
+  const getItemDetail = (itemId) => {
+    fetch(`https://ancient-beyond-65897.herokuapp.com/item/${itemId}`, {mode: 'cors'})
+    .then(res => res.json())
+    .then(res => setSelectedItemDetail(res));   
   }
 
   useEffect(() => {
@@ -46,13 +63,17 @@ const App = () => {
           <Route exact path='/'>
             <HomepageGrid 
               onCategoryClick={getCategoryDetail}
-              categories={indexData}
-              selectedCategoryDetail={selectedCategoryDetail}>
+              categories={indexData}>
             </HomepageGrid>
           </Route>
           <Route exact path={`/category/${selectedCategoryDetail.category._id}`}>
-            <CategoryDetail categoryData={selectedCategoryDetail}>
+            <CategoryDetail 
+              categoryData={selectedCategoryDetail}
+              onItemClick={getItemDetail}>
             </CategoryDetail>
+          </Route>
+          <Route exact path={`/item/${selectedItemDetail._id}`}>
+            {/* TO DO */}
           </Route>
         </Switch>
       </BrowserRouter>
