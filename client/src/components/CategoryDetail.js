@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Header = styled.h1`
 `;
@@ -7,7 +8,7 @@ const Header = styled.h1`
 const CategoryItems = styled.ul`
 `;
 
-const ItemLink = styled.a`
+const ItemLink = styled(Link)`
     color: #000000;
     text-decoration: none;
     &:hover {
@@ -17,7 +18,7 @@ const ItemLink = styled.a`
 
 const CategoryDetail = (props) => {
 
-    const { categoryData } = props;
+    const { categoryData, onItemClick } = props;
 
     return(
         <div className='CategoryDetail'>
@@ -26,7 +27,10 @@ const CategoryDetail = (props) => {
                 {categoryData.category_items.map((categoryItem) => {
                     return <li
                                 key={categoryItem._id}  >
-                                    <ItemLink href={`/item/${categoryItem._id}`}>{categoryItem.name}</ItemLink> - {categoryItem.stock} in stock
+                                    <ItemLink onClick={onItemClick(categoryItem._id)}
+                                              to={`/item/${categoryItem._id}`}>
+                                            {categoryItem.name}
+                                    </ItemLink> - {categoryItem.stock} in stock
                             </li>
                 })}                
             </CategoryItems>

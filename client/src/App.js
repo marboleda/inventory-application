@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import { BrowserRouter, Route, Switch} from 'react-router-dom';
 import HomepageGrid from './components/HomepageGrid';
 import Header from './components/Header';
-import CategoryDetail from './components/CategoryDetail'
+import CategoryDetail from './components/CategoryDetail';
+import ItemDetail from './components/ItemDetail';
 
 const LoadingMessage = styled.p`
   color: #427d00;
@@ -73,7 +74,8 @@ const App = () => {
             </CategoryDetail>
           </Route>
           <Route exact path={`/item/${selectedItemDetail._id}`}>
-            {/* TO DO */}
+            <ItemDetail itemData={selectedItemDetail}>
+            </ItemDetail>
           </Route>
         </Switch>
       </BrowserRouter>
