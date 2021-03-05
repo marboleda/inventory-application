@@ -58,11 +58,11 @@ const getImage = (categoryName) => {
 
 const HomepageCategory = (props) => {
 
-    const { id, category_name, onCategoryClick } = props;
+    const { id, category_name } = props;
     const routeURL = `/category/${id}`;
 
     return(
-        <Category key={id} onClick={() => onCategoryClick(id)}>
+        <Category key={id}>
             <StyledLink to={routeURL}>
                 <CategoryImage src={getImage(category_name)} />
                 <h3>{category_name}</h3>

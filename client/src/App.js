@@ -25,8 +25,6 @@ const App = () => {
 
   const [indexData, setIndexData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedCategoryDetail, setSelectedCategoryDetail] = useState({category: {_id: '0'}});
-  const [selectedItemDetail, setSelectedItemDetail] = useState(emptyItemObject);
 
   const getIndexData = () => {
     fetch('https://ancient-beyond-65897.herokuapp.com/', {mode: 'cors'})
@@ -35,18 +33,6 @@ const App = () => {
         setIndexData(res);
         setIsLoading(false);
       });
-  }
-
-  const getCategoryDetail = (categoryId) => {
-    fetch(`https://ancient-beyond-65897.herokuapp.com/category/${categoryId}`, {mode: 'cors'})
-      .then(res => res.json())
-      .then(res => setSelectedCategoryDetail(res));
-  }
-
-  const getItemDetail = (itemId) => {
-    fetch(`https://ancient-beyond-65897.herokuapp.com/item/${itemId}`, {mode: 'cors'})
-    .then(res => res.json())
-    .then(res => setSelectedItemDetail(res));   
   }
 
   useEffect(() => {
@@ -63,19 +49,16 @@ const App = () => {
           {isLoading ? <LoadingMessage>Loading Categories...</LoadingMessage> : null}
           <Route exact path='/'>
             <HomepageGrid 
-              onCategoryClick={getCategoryDetail}
               categories={indexData}>
             </HomepageGrid>
           </Route>
-          <Route exact path={`/category/${selectedCategoryDetail.category._id}`}>
-            <CategoryDetail 
-              categoryData={selectedCategoryDetail}
-              onItemClick={getItemDetail}>
-            </CategoryDetail>
+          <Route exact 
+                path={`/category/:id`}
+                component={CategoryDetail}>
           </Route>
-          <Route exact path={`/item/${selectedItemDetail._id}`}>
-            <ItemDetail itemData={selectedItemDetail}>
-            </ItemDetail>
+          <Route exact 
+                 path={`/item/:id`}
+                 component={ItemDetail}>
           </Route>
         </Switch>
       </BrowserRouter>
