@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import styled from 'styled-components';
+
+const Price = styled.p`
+    font-weight: bold;
+`;
 
 
 const ItemDetail = (props) => {
@@ -20,6 +25,8 @@ const ItemDetail = (props) => {
         <div className='ItemDetail'>
             <h2>{itemData.name}</h2>
             <p>{itemData.weight_num} {itemData.weight_unit}</p>
+            <Price>${itemData.price}</Price>
+            <p>In Stock: {itemData.stock}</p>
         </div>))
     );
 }
