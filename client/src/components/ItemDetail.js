@@ -6,6 +6,15 @@ const Price = styled.p`
     font-weight: bold;
 `;
 
+const ButtonsContainer = styled.div`
+`;
+
+const ModifyButton = styled.button`
+    margin: 10px;
+    background-color: #427d00;
+    color: #ffffff;
+`
+
 
 const ItemDetail = (props) => {
 
@@ -27,6 +36,10 @@ const ItemDetail = (props) => {
             <p>{itemData.weight_num} {itemData.weight_unit}</p>
             <Price>${itemData.price}</Price>
             <p>In Stock: {itemData.stock}</p>
+            <ButtonsContainer>
+                <ModifyButton>Update</ModifyButton>
+                <ModifyButton>Delete</ModifyButton>
+            </ButtonsContainer>
         </div>))
     );
 }
