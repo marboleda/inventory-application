@@ -37,7 +37,7 @@ const ItemDetail = (props) => {
             <Price>${itemData.price}</Price>
             <p>In Stock: {itemData.stock}</p>
             <ButtonsContainer>
-                <ModifyButton>Update</ModifyButton>
+                <a href={`./${id}/update`}><ModifyButton type="button">Update</ModifyButton></a>
                 <ModifyButton>Delete</ModifyButton>
             </ButtonsContainer>
         </div>))
