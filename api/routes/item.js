@@ -8,5 +8,6 @@ const item_controller = require('../controllers/itemController');
 
 // GET request for an item
 router.get('/:id', item_controller.item_detail);
+router.post('/:id', item_controller.item_update_post);
 
 module.exports = router;
