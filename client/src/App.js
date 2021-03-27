@@ -6,7 +6,8 @@ import HomepageGrid from './components/HomepageGrid';
 import Header from './components/Header';
 import CategoryDetail from './components/CategoryDetail';
 import ItemDetail from './components/ItemDetail';
-import ItemUpdate from './components/ItemUpdate'
+import ItemUpdate from './components/ItemUpdate';
+import ItemCreate from './components/ItemCreate';
 
 const LoadingMessage = styled.p`
   color: #427d00;
@@ -56,6 +57,10 @@ const App = () => {
           <Route exact 
                 path={`/category/:id`}
                 component={CategoryDetail}>
+          </Route>
+          <Route exact
+                 path={`/category/:id/new_item`}
+                 component={ItemCreate}>
           </Route>
           <Route exact 
                  path={`/item/:id`}

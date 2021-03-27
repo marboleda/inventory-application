@@ -16,9 +16,19 @@ const ItemLink = styled(Link)`
     }
 `;
 
+const NewItemButton = styled.button`
+    margin: 10px;
+    background-color: #427d00;
+
+`;
+
+const NewItemLink = styled(Link)`
+    text-decoration: none;
+    color: #ffffff;
+`
+
 const CategoryDetail = (props) => {
 
-    const { onItemClick } = props;
     const { id } = useParams();
 
     const [categoryData, setCategoryData] = useState(null);
@@ -43,6 +53,7 @@ const CategoryDetail = (props) => {
                             </li>
                 })}                
             </CategoryItems>
+            <NewItemButton><NewItemLink to={`/category/${id}/new_item`}>New Item</NewItemLink></NewItemButton>
         </div>))
     )
 }
