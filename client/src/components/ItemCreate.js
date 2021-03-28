@@ -38,7 +38,7 @@ const ItemCreate = (props) => {
             stock: e.target.stock.value,
             category: categoryData._id
         }
-        fetch(`https://ancient-beyond-65897.herokuapp.com/category/${id}/create_item`, {
+        fetch(`http://localhost:9000/category/${id}/create_item`, {
             mode: 'cors', 
             method: 'post', 
             headers: {
@@ -56,7 +56,7 @@ const ItemCreate = (props) => {
         (categoryData && (
         <div className='ItemCreate'>
             <h2>Create a new {categoryData.name} item:</h2>
-            <NewItemForm onSubmit={putData}>
+            <NewItemForm onSubmit={postData}>
                 <div>
                     <label for='name'>Name:</label>
                     <input name='name' type='text' required />

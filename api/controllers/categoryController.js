@@ -36,3 +36,45 @@ exports.category_detail = (req, res, next) => {
         res.json({ category: results.category, category_items: results.category_items });
     });
 }
+
+exports.category_create_item = [
+
+    //Validate and sanitize fields
+    body('name', 'Name must be specified').trim().isLength({ min: 1 }).escape(),
+    body('weight_num', 'weight_num must be a number').trim().isNumeric(),
+    body('weight_unit', 'weight_unit must be a valid option').trim().
+        custom((value) => ['kg', 'g', 'ml', 'l', 'oz', 'count'].includes(value)),
+    body('price', 'price must be a number').trim().isNumeric(),
+    body('stock', 'stock must be an integer').trim().isInt(),
+    
+   //Process request after validation and sanitization
+   (req, res, next) => {
+
+       // Extract validation errors from request if any
+       const errors = validationResult(req);
+
+        // Create an item instance with escaped and trimmed data.
+        const item = new Item(
+            {
+                name: req.body.name,
+                weight_num: req.body.weight_num,
+                weight_unit: req.body.weight_unit,
+                price: req.body.price,
+                category: req.body.category,
+                stock: req.body.stock
+            }
+        )
+
+        if (!errors.isEmpty()) {
+            //TODO: There are errors. Render form again with sanitized values/error messages
+        } 
+        else {
+            // Data from form is valid!
+            item.save((err) => {
+                if (err) { return next(err); }
+                // Successful - go to new item's page
+                res.redirect(item.url)
+            });
+        }
+    }       
+];
