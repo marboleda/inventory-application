@@ -39,7 +39,7 @@ const ItemCreate = (props) => {
             category: e.target.category.value
         }
         console.log(itemObject);
-        fetch(`http://localhost:9000/category/${id}/create_item`, {
+        fetch(`https://ancient-beyond-65897.herokuapp.com/category/${id}/create_item`, {
             mode: 'cors', 
             method: 'post', 
             headers: {
