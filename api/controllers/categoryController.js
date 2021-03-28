@@ -53,28 +53,34 @@ exports.category_create_item = [
        // Extract validation errors from request if any
        const errors = validationResult(req);
 
-        // Create an item instance with escaped and trimmed data.
-        const item = new Item(
-            {
-                name: req.body.name,
-                weight_num: req.body.weight_num,
-                weight_unit: req.body.weight_unit,
-                price: req.body.price,
-                category: req.body.category,
-                stock: req.body.stock
-            }
-        )
-
-        if (!errors.isEmpty()) {
-            //TODO: There are errors. Render form again with sanitized values/error messages
-        } 
-        else {
-            // Data from form is valid!
-            item.save((err) => {
+        Category.findById(req.body.category).
+            exec((err, category) => {
                 if (err) { return next(err); }
-                // Successful - go to new item's page
-                res.redirect(item.url)
+                // Create an item instance with escaped and trimmed data.
+                const item = new Item(
+                    {
+                        name: req.body.name,
+                        weight_num: req.body.weight_num,
+                        weight_unit: req.body.weight_unit,
+                        price: req.body.price,
+                        category: category._id,
+                        stock: req.body.stock
+                    }
+                )
+
+                if (!errors.isEmpty()) {
+                    //TODO: There are errors. Render form again with sanitized values/error messages
+                } 
+                else {
+                    // Data from form is valid!
+                    item.save((err) => {
+                        if (err) { return next(err); }
+                        // Successful - go to category item list
+                        res.redirect(`/category/${req.body.category}`);
+                    });
+                }
             });
-        }
+           
+
     }       
 ];
