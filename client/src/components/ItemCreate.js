@@ -36,8 +36,9 @@ const ItemCreate = (props) => {
             weight_unit: e.target.weight_unit.value,
             price: e.target.price.value,
             stock: e.target.stock.value,
-            category: categoryData._id
+            category: e.target.category.value
         }
+        console.log(itemObject);
         fetch(`http://localhost:9000/category/${id}/create_item`, {
             mode: 'cors', 
             method: 'post', 
@@ -64,7 +65,7 @@ const ItemCreate = (props) => {
 
                 <div>
                     <label for='weight_num'>Weight Quantity:</label>
-                    <input name='weight_num'type='number' step='any'/>
+                    <input name='weight_num' type='number' step='any'/>
                 </div>
 
                 <div>
@@ -88,7 +89,9 @@ const ItemCreate = (props) => {
                 <div>
                     <label for='stock'>In Stock:</label>
                     <input name='stock' type='number' step='1'/>
-                </div>               
+                </div>
+
+                <input name='category' type='hidden' value={categoryData.category._id} />               
 
                 <SubmitButton type="submit">Submit</SubmitButton>
             </NewItemForm>

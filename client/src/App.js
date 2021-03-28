@@ -59,7 +59,7 @@ const App = () => {
                 component={CategoryDetail}>
           </Route>
           <Route exact
-                 path={`/category/:id/new_item`}
+                 path={`/category/:id/create_item`}
                  component={ItemCreate}>
           </Route>
           <Route exact 
