@@ -28,7 +28,7 @@ const ItemCreate = (props) => {
         .then(res => setCategoryData(res));
     }, []);
 
-    const putData = (e) => {
+    const postData = (e) => {
         e.preventDefault();
         const itemObject = {
             name: e.target.name.value,
@@ -38,9 +38,9 @@ const ItemCreate = (props) => {
             stock: e.target.stock.value,
             category: categoryData._id
         }
-        fetch(`https://ancient-beyond-65897.herokuapp.com/item/${id}`, {
+        fetch(`https://ancient-beyond-65897.herokuapp.com/category/${id}/create_item`, {
             mode: 'cors', 
-            method: 'put', 
+            method: 'post', 
             headers: {
                 'Content-type': 'application/json'
             },

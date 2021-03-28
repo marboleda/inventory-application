@@ -53,7 +53,7 @@ const CategoryDetail = (props) => {
                             </li>
                 })}                
             </CategoryItems>
-            <NewItemButton><NewItemLink to={`/category/${id}/new_item`}>New Item</NewItemLink></NewItemButton>
+            <NewItemButton><NewItemLink to={`/category/${id}/create_item`}>New Item</NewItemLink></NewItemButton>
         </div>))
     )
 }
