@@ -23,14 +23,17 @@ const CategoryImage = styled.img`
     width: 80%;
     height: 80%;
     border-radius: 50%;
+    &:hover {
+        border: 3px solid #000000;     
+        padding: 5px;  
+    }
 `
 
 const StyledLink = styled(Link)`
     text-decoration: none;
     color: #000000;
-
-    &:focus, &:hover, &:visited, &:link, &:active {
-        text-decoration: none;
+    &:hover {
+        text-decoration: underline;
     }
 `
 

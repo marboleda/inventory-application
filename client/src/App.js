@@ -8,6 +8,7 @@ import CategoryDetail from './components/CategoryDetail';
 import ItemDetail from './components/ItemDetail';
 import ItemUpdate from './components/ItemUpdate';
 import ItemCreate from './components/ItemCreate';
+import ItemDelete from './components/ItemCreate';
 
 const LoadingMessage = styled.p`
   color: #427d00;
@@ -48,7 +49,7 @@ const App = () => {
       <BrowserRouter>
         <Header></Header>
         <Switch>
-          {isLoading ? <LoadingMessage>Loading Categories...</LoadingMessage> : null}
+          {isLoading ? <LoadingMessage>Loading Content...</LoadingMessage> : null}
           <Route exact path='/'>
             <HomepageGrid 
               categories={indexData}>
@@ -69,6 +70,10 @@ const App = () => {
           <Route exact
                  path={`/item/:id/update`}
                  component={ItemUpdate}>
+          </Route>
+          <Route exact
+                 path={`/item/:id/delete`}
+                 component={ItemDelete}>
           </Route>
         </Switch>
       </BrowserRouter>

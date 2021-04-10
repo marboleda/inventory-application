@@ -38,7 +38,7 @@ const ItemDetail = (props) => {
             <p>In Stock: {itemData.stock}</p>
             <ButtonsContainer>
                 <a href={`./${id}/update`}><ModifyButton type="button">Update</ModifyButton></a>
-                <ModifyButton>Delete</ModifyButton>
+                <a href={`./${id}/delete`}><ModifyButton type="button">Delete</ModifyButton></a>
             </ButtonsContainer>
         </div>))
     );
