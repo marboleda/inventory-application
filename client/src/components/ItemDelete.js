@@ -41,7 +41,7 @@ const ItemDelete = (props) => {
 
     const deleteData = (e) => {
         e.preventDefault();
-        fetch(`http://localhost:9000/item/${id}`, {
+        fetch(`https://ancient-beyond-65897.herokuapp.com/item/${id}`, {
             mode: 'cors', 
             method: 'delete', 
             headers: {
