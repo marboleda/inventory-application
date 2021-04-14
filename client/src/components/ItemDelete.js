@@ -34,8 +34,6 @@ const ItemDelete = (props) => {
         .then(res => res.json())
         .then(res => {
             setItemData(res);
-            categoryURL = `${rootURL}category/${res.category}`;
-            itemURL = `${rootURL}item/${res._id}`;
         });
     }, []);
 
@@ -51,8 +49,14 @@ const ItemDelete = (props) => {
         })
         .then((res) => {
             console.log(res);
+            categoryURL = `${rootURL}category/${itemData.category}`;
             window.location.href = categoryURL;
         });
+    }
+
+    const cancelDelete = (e) => {
+        itemURL = `${rootURL}item/${itemData._id}`;
+        window.location.href = itemURL;
     }
 
     return(
@@ -61,7 +65,7 @@ const ItemDelete = (props) => {
             <p>Are you sure you want to delete <ItemName>{itemData.name}</ItemName>?</p>
             <InputContainer>
                 <DeletePageButton onClick={deleteData} type='button'>Delete</DeletePageButton>
-                <a href={itemURL}><DeletePageButton type='button'>Cancel</DeletePageButton></a>
+                <DeletePageButton onClick={cancelDelete} type='button'>Cancel</DeletePageButton>
             </InputContainer>
         </div>))
     );
