@@ -65,3 +65,21 @@ exports.item_update_post = [
             );
     }
 ];
+
+// Handle item delete
+exports.item_delete = (req, res, next) => {
+
+    Item.findById(req.params.id)
+        .exec((err, item) => {
+            if (err) { return next(err); }
+            // Successful, so delete
+            Item.findByIdAndRemove(req.body.itemID, (err) => {
+                if (err) { return next(err); }
+                // Success - go to category display -- Handled in front-end
+                console.log("You get in here");
+                res.json({
+                    message: 'Item deleted successfully!'
+                });
+            });
+        })
+}

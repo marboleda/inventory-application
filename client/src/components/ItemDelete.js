@@ -41,13 +41,17 @@ const ItemDelete = (props) => {
 
     const deleteData = (e) => {
         e.preventDefault();
-        fetch(`https://ancient-beyond-65897.herokuapp.com/item/${id}`, {
+        fetch(`http://localhost:9000/item/${id}`, {
             mode: 'cors', 
             method: 'delete', 
-            body: JSON.stringify(itemData._id)
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({ itemID: itemData._id })
         })
         .then((res) => {
             console.log(res);
+            window.location.href = categoryURL;
         });
     }
 
@@ -56,8 +60,8 @@ const ItemDelete = (props) => {
         <div className='ItemDelete'>
             <p>Are you sure you want to delete <ItemName>{itemData.name}</ItemName>?</p>
             <InputContainer>
-                <DeletePageButton>Delete</DeletePageButton>
-                <a href={`.`}><DeletePageButton>Cancel</DeletePageButton></a>
+                <DeletePageButton onClick={deleteData} type='button'>Delete</DeletePageButton>
+                <a href={itemURL}><DeletePageButton type='button'>Cancel</DeletePageButton></a>
             </InputContainer>
         </div>))
     );
