@@ -29,13 +29,11 @@ const App = () => {
   const [indexData, setIndexData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const getIndexData = () => {
-    fetch('https://ancient-beyond-65897.herokuapp.com/', {mode: 'cors'})
-      .then(res => res.json())
-      .then(res => { 
-        setIndexData(res);
-        setIsLoading(false);
-      });
+  const getIndexData = async () => {
+    const res = await fetch('https://ancient-beyond-65897.herokuapp.com/', {mode: 'cors'});
+    const data = await res.json();
+    setIndexData(data);
+    setIsLoading(false);
   }
 
   useEffect(() => {

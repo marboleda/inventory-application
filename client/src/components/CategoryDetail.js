@@ -37,9 +37,13 @@ const CategoryDetail = (props) => {
     const [categoryData, setCategoryData] = useState(null);
 
     useEffect(() => {
-        fetch(`https://ancient-beyond-65897.herokuapp.com/category/${id}`, {mode: 'cors'})
-        .then(res => res.json())
-        .then(res => setCategoryData(res));
+        const getCategoryData = async () => {
+            const res = await fetch(`https://ancient-beyond-65897.herokuapp.com/category/${id}`, {mode: 'cors'});
+            const data = await res.json();
+            setCategoryData(data);
+        }
+
+        getCategoryData();
     }, [])
 
     return(
