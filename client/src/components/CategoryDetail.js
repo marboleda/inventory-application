@@ -6,6 +6,9 @@ const Header = styled.h1`
 `;
 
 const CategoryItems = styled.ul`
+    display: table;
+    text-align: left;
+    margin: 0 auto;
 `;
 
 const ItemLink = styled(Link)`
