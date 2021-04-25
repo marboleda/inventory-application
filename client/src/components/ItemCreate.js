@@ -2,17 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
+const FormButton = styled.button`
+  background-color: #427d00;
+  color: #ffffff;
+  margin-top: 10px;  
+`;
+
 const NewItemForm = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
 `;
 
-const SubmitButton = styled.button`
+const SubmitButton = styled(FormButton)`
     width: 30vw;
-    background-color: #427d00;
-    color: #ffffff;    
-    margin-top: 10px;
 `;
 
 const ItemCreate = (props) => {
@@ -31,8 +34,6 @@ const ItemCreate = (props) => {
     const postData = (e) => {
         e.preventDefault();
 
-        console.log(e.target.itemImage.files[0]);
-
         const formData = new FormData();
         formData.append('name', e.target.name.value);
         formData.append('weight_num', e.target.weight_num.value);
@@ -42,8 +43,7 @@ const ItemCreate = (props) => {
         formData.append('category', e.target.category.value);
         formData.append('itemImage', e.target.itemImage.files[0]);
 
-        //fetch(`https://ancient-beyond-65897.herokuapp.com/category/${id}/create_item`, {
-        fetch(`http://localhost:9000/category/${id}/create_item`, {
+        fetch(`https://ancient-beyond-65897.herokuapp.com/category/${id}/create_item`, {
             mode: 'cors', 
             method: 'post', 
             body: formData
@@ -105,4 +105,4 @@ const ItemCreate = (props) => {
     );
 }
 
-export default ItemCreate;
+export { ItemCreate, FormButton };

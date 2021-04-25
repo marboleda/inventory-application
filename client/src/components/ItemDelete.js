@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { FormButton } from './ItemCreate';
 
 const InputContainer = styled.div`
     display: flex;
@@ -9,10 +10,7 @@ const InputContainer = styled.div`
     margin: 0 auto;
 `;
 
-const DeletePageButton = styled.button`
-    width: 30vw;
-    background-color: #427d00;
-    color: #ffffff;    
+const DeletePageButton = styled(FormButton)`
     margin: 10px;
     width: 5vw;
 `;

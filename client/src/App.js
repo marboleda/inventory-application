@@ -7,7 +7,7 @@ import Header from './components/Header';
 import CategoryDetail from './components/CategoryDetail';
 import ItemDetail from './components/ItemDetail';
 import ItemUpdate from './components/ItemUpdate';
-import ItemCreate from './components/ItemCreate';
+import { ItemCreate } from './components/ItemCreate';
 import ItemDelete from './components/ItemDelete';
 
 const LoadingMessage = styled.p`

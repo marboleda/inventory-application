@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { FormButton } from './ItemCreate';
 
 const UpdateForm = styled.form`
     display: flex;
@@ -8,11 +9,8 @@ const UpdateForm = styled.form`
     align-items: center;
 `;
 
-const SubmitButton = styled.button`
+const SubmitButton = styled(FormButton)`
     width: 30vw;
-    background-color: #427d00;
-    color: #ffffff;    
-    margin-top: 10px;
 `;
 
 const ItemUpdate = (props) => {

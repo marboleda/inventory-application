@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { FormButton } from './ItemCreate';
 
 const Price = styled.p`
     font-weight: bold;
@@ -9,10 +10,8 @@ const Price = styled.p`
 const ButtonsContainer = styled.div`
 `;
 
-const ModifyButton = styled.button`
+const ModifyButton = styled(FormButton)`
     margin: 10px;
-    background-color: #427d00;
-    color: #ffffff;
 `
 
 
