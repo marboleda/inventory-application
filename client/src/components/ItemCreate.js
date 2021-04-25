@@ -30,22 +30,23 @@ const ItemCreate = (props) => {
 
     const postData = (e) => {
         e.preventDefault();
-        const itemObject = {
-            name: e.target.name.value,
-            weight_num: e.target.weight_num.value,
-            weight_unit: e.target.weight_unit.value,
-            price: e.target.price.value,
-            stock: e.target.stock.value,
-            category: e.target.category.value
-        }
-        console.log(itemObject);
-        fetch(`https://ancient-beyond-65897.herokuapp.com/category/${id}/create_item`, {
+
+        console.log(e.target.itemImage.files[0]);
+
+        const formData = new FormData();
+        formData.append('name', e.target.name.value);
+        formData.append('weight_num', e.target.weight_num.value);
+        formData.append('weight_unit', e.target.weight_unit.value);
+        formData.append('price', e.target.price.value);
+        formData.append('stock', e.target.stock.value);
+        formData.append('category', e.target.category.value);
+        formData.append('itemImage', e.target.itemImage.files[0]);
+
+        //fetch(`https://ancient-beyond-65897.herokuapp.com/category/${id}/create_item`, {
+        fetch(`http://localhost:9000/category/${id}/create_item`, {
             mode: 'cors', 
             method: 'post', 
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(itemObject)
+            body: formData
         })
         .then((res) => {
             console.log(res);
@@ -57,7 +58,7 @@ const ItemCreate = (props) => {
         (categoryData && (
         <div className='ItemCreate'>
             <h2>Create a new {categoryData.name} item:</h2>
-            <NewItemForm onSubmit={postData}>
+            <NewItemForm onSubmit={postData} enctype='multipart/form-data'>
                 <div>
                     <label for='name'>Name:</label>
                     <input name='name' type='text' required />
@@ -92,6 +93,11 @@ const ItemCreate = (props) => {
                 </div>
 
                 <input name='category' type='hidden' value={categoryData.category._id} />               
+
+                <div>
+                    <label for='itemImage'>Image:</label>
+                    <input name='itemImage' type='file'></input>
+                </div>
 
                 <SubmitButton type="submit">Submit</SubmitButton>
             </NewItemForm>

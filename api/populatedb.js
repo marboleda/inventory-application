@@ -30,7 +30,8 @@ function itemCreate(name, weight_num, weight_unit, price, category, stock, cb) {
                 weight_unit: weight_unit,
                 price: price,
                 category: category,
-                stock: stock }
+                stock: stock,
+                image_filename: image_filename }
   
   var item = new Item(itemDetail);
        
@@ -85,25 +86,25 @@ function createCategories(cb) {
 function createItems(cb) {
     async.parallel([
         function(callback) {
-          itemCreate('Banana', 0.15, 'kg', 0.28, categories[0], 200, callback);
+          itemCreate('Banana', 0.15, 'kg', 0.28, categories[0], 200, '', callback);
         },
         function(callback) {
-          itemCreate('Brown Mushrooms', 8, 'oz', 1.97, categories[0], 60, callback);
+          itemCreate('Brown Mushrooms', 8, 'oz', 1.97, categories[0], 60, '', callback);
         },
         function(callback) {
-          itemCreate('Large Eggs', 12, 'count', 2.84, categories[1], 35, callback);
+          itemCreate('Large Eggs', 12, 'count', 2.84, categories[1], 35, '', callback);
         },
         function(callback) {
-          itemCreate('Almond Milk', 1.89, 'l', 4.17, categories[1], 30, callback);
+          itemCreate('Almond Milk', 1.89, 'l', 4.17, categories[1], 30, '', callback);
         },
         function(callback) {
-          itemCreate('100% Whole Wheat Bread', 675, 'g', 2.47, categories[2], 40, callback);
+          itemCreate('100% Whole Wheat Bread', 675, 'g', 2.47, categories[2], 40, '', callback);
         },
         function(callback) {
-          itemCreate('Chicken Thighs', 1.25, 'kg', 12.81, categories[3], 100, callback);
+          itemCreate('Chicken Thighs', 1.25, 'kg', 12.81, categories[3], 100, '', callback);
         },
         function(callback) {
-          itemCreate('Dark Red Kidney Beans', 540, 'ml', 0.87, categories[4], 20, callback);
+          itemCreate('Dark Red Kidney Beans', 540, 'ml', 0.87, categories[4], 20, '', callback);
         }
         ],
         // optional callback

@@ -1,7 +1,6 @@
 const { body, validationResult } = require('express-validator');
 const Category = require('../models/category');
 const Item = require('../models/item');
-
 const async = require('async');
 
 exports.index = (req, res, next) => {
@@ -38,7 +37,6 @@ exports.category_detail = (req, res, next) => {
 }
 
 exports.category_create_item = [
-
     //Validate and sanitize fields
     body('name', 'Name must be specified').trim().isLength({ min: 1 }).escape(),
     body('weight_num', 'weight_num must be a number').trim().isNumeric(),
@@ -46,9 +44,11 @@ exports.category_create_item = [
         custom((value) => ['kg', 'g', 'ml', 'l', 'oz', 'count'].includes(value)),
     body('price', 'price must be a number').trim().isNumeric(),
     body('stock', 'stock must be an integer').trim().isInt(),
-    
+
    //Process request after validation and sanitization
    (req, res, next) => {
+
+        console.log(req.file);
 
        // Extract validation errors from request if any
        const errors = validationResult(req);
@@ -64,7 +64,8 @@ exports.category_create_item = [
                         weight_unit: req.body.weight_unit,
                         price: req.body.price,
                         category: category._id,
-                        stock: req.body.stock
+                        stock: req.body.stock,
+                        image_filename: req.file.filename
                     }
                 )
 
@@ -76,11 +77,9 @@ exports.category_create_item = [
                     item.save((err) => {
                         if (err) { return next(err); }
                         // Successful - go to category item list
-                        res.redirect(`/category/${req.body.category}`);
+                        res.json('Item Created!');
                     });
                 }
             });
-           
-
     }       
 ];

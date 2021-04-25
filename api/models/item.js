@@ -10,6 +10,7 @@ const ItemSchema = new Schema(
         price: {type: Number},
         category: {type: Schema.Types.ObjectId, ref: 'Category'},
         stock: {type: Number},
+        image_filename: { type: String },
     }
 );
 

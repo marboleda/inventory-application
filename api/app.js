@@ -1,19 +1,16 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var cors = require('cors');
-const multer = require('multer');
+const createError = require('http-errors');
+const express = require('express');
 const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const cors = require('cors');
 
-
-const indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index').router;
 const usersRouter = require('./routes/users');
 const categoryRouter = require('./routes/category');
 const itemRouter = require('./routes/item');
 
-var app = express();
+const app = express();
 
 //Set up mongoose connection
 //const secrets = require('./secrets');
@@ -57,4 +54,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+exports.app = app;
