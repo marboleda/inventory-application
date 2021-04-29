@@ -26,6 +26,8 @@ const App = () => {
     stock: 0
   }
 
+  const serverRoot = 'https://ancient-beyond-65897.herokuapp.com/';
+
   const [indexData, setIndexData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -54,24 +56,24 @@ const App = () => {
             </HomepageGrid>
           </Route>
           <Route exact 
-                path={`/category/:id`}
-                component={CategoryDetail}>
+                path={`/category/:id`}>
+                  <CategoryDetail serverRoot={serverRoot} />
           </Route>
           <Route exact
-                 path={`/category/:id/create_item`}
-                 component={ItemCreate}>
+                 path={`/category/:id/create_item`}>
+                   <ItemCreate serverRoot={serverRoot} />
           </Route>
           <Route exact 
-                 path={`/item/:id`}
-                 component={ItemDetail}>
+                 path={`/item/:id`}>
+                   <ItemDetail serverRoot={serverRoot} />
           </Route>
           <Route exact
-                 path={`/item/:id/update`}
-                 component={ItemUpdate}>
+                 path={`/item/:id/update`}>
+                   <ItemUpdate serverRoot={serverRoot} />
           </Route>
           <Route exact
-                 path={`/item/:id/delete`}
-                 component={ItemDelete}>
+                 path={`/item/:id/delete`}>
+                   <ItemDelete serverRoot={serverRoot} />
           </Route>
         </Switch>
       </BrowserRouter>

@@ -18,12 +18,13 @@ const ModifyButton = styled(FormButton)`
 const ItemDetail = (props) => {
 
     const { id } = useParams();
+    const { serverRoot } = props;
 
     const [itemData, setItemData] = useState(null);
   
 
     useEffect(() => {
-        fetch(`https://ancient-beyond-65897.herokuapp.com/item/${id}`, {mode: 'cors'})
+        fetch(`${serverRoot}item/${id}`, {mode: 'cors'})
         .then(res => res.json())
         .then(res => setItemData(res));
     }, []);

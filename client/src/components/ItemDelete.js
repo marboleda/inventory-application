@@ -22,13 +22,13 @@ const ItemName = styled.span`
 const ItemDelete = (props) => {
 
     const { id } = useParams();
-    const rootURL = `${window.location.protocol}\/\/${window.location.hostname}:${window.location.port}/`;
+    const { serverRoot } = props;
     let categoryURL, itemURL;
 
     const [itemData, setItemData] = useState(null);
 
     useEffect(() => {
-        fetch(`https://ancient-beyond-65897.herokuapp.com/item/${id}`, {mode: 'cors'})
+        fetch(`${serverRoot}item/${id}`, {mode: 'cors'})
         .then(res => res.json())
         .then(res => {
             setItemData(res);
@@ -37,7 +37,7 @@ const ItemDelete = (props) => {
 
     const deleteData = (e) => {
         e.preventDefault();
-        fetch(`https://ancient-beyond-65897.herokuapp.com/item/${id}`, {
+        fetch(`${serverRoot}item/${id}`, {
             mode: 'cors', 
             method: 'delete', 
             headers: {
@@ -47,13 +47,13 @@ const ItemDelete = (props) => {
         })
         .then((res) => {
             console.log(res);
-            categoryURL = `${rootURL}category/${itemData.category}`;
+            categoryURL = `${serverRoot}category/${itemData.category}`;
             window.location.href = categoryURL;
         });
     }
 
     const cancelDelete = (e) => {
-        itemURL = `${rootURL}item/${itemData._id}`;
+        itemURL = `${serverRoot}item/${itemData._id}`;
         window.location.href = itemURL;
     }
 

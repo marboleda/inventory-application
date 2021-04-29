@@ -33,12 +33,13 @@ const NewItemLink = styled(Link)`
 const CategoryDetail = (props) => {
 
     const { id } = useParams();
+    const { serverRoot } = props;
 
     const [categoryData, setCategoryData] = useState(null);
 
     useEffect(() => {
         const getCategoryData = async () => {
-            const res = await fetch(`https://ancient-beyond-65897.herokuapp.com/category/${id}`, {mode: 'cors'});
+            const res = await fetch(`${serverRoot}category/${id}`, {mode: 'cors'});
             const data = await res.json();
             setCategoryData(data);
         }
@@ -52,11 +53,10 @@ const CategoryDetail = (props) => {
             <Header>{categoryData.category.name}</Header>
             <CategoryItems>
                 {categoryData.category_items.map((categoryItem) => {
-                    return <li
-                                key={categoryItem._id}  >
+                    return <li key={categoryItem._id}  >
                                     <ItemLink to={`/item/${categoryItem._id}`}>
-                                            {categoryItem.name}
-                                    </ItemLink> - {categoryItem.stock} in stock
+                                            <span>{categoryItem.name} -</span>
+                                    </ItemLink> {categoryItem.stock} in stock
                             </li>
                 })}                
             </CategoryItems>

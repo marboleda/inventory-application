@@ -16,7 +16,8 @@ const SubmitButton = styled(FormButton)`
 const ItemUpdate = (props) => {
 
     const { id } = useParams();
-    const itemURL = `${window.location.protocol}\/\/${window.location.hostname}:${window.location.port}/item/${id}`
+    const { serverRoot } = props;
+    const itemURL = `${serverRoot}item/${id}`
 
     const [itemData, setItemData] = useState(null);
     const [name, setName] = useState('');
@@ -27,7 +28,7 @@ const ItemUpdate = (props) => {
   
 
     useEffect(() => {
-        fetch(`https://ancient-beyond-65897.herokuapp.com/item/${id}`, {mode: 'cors'})
+        fetch(`${serverRoot}item/${id}`, {mode: 'cors'})
         .then(res => res.json())
         .then(res => {
             setItemData(res);
@@ -48,7 +49,7 @@ const ItemUpdate = (props) => {
             price: e.target.price.value,
             stock: e.target.stock.value
         }
-        fetch(`https://ancient-beyond-65897.herokuapp.com/item/${id}`, {
+        fetch(`${serverRoot}item/${id}`, {
             mode: 'cors', 
             method: 'post', 
             headers: {

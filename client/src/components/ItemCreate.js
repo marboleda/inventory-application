@@ -22,11 +22,12 @@ const ItemCreate = (props) => {
 
     const { id } = useParams();
     const categoryURL = `${window.location.protocol}\/\/${window.location.hostname}:${window.location.port}/category/${id}`
+    const { serverRoot } = props;
 
     const [categoryData, setCategoryData] = useState(null);
 
     useEffect(() => {
-        fetch(`https://ancient-beyond-65897.herokuapp.com/category/${id}`, {mode: 'cors'})
+        fetch(`${serverRoot}category/${id}`, {mode: 'cors'})
         .then(res => res.json())
         .then(res => setCategoryData(res));
     }, []);
@@ -43,7 +44,7 @@ const ItemCreate = (props) => {
         formData.append('category', e.target.category.value);
         formData.append('itemImage', e.target.itemImage.files[0]);
 
-        fetch(`https://ancient-beyond-65897.herokuapp.com/category/${id}/create_item`, {
+        fetch(`${serverRoot}category/${id}/create_item`, {
             mode: 'cors', 
             method: 'post', 
             body: formData
