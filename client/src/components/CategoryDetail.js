@@ -6,9 +6,19 @@ const Header = styled.h1`
 `;
 
 const CategoryItems = styled.ul`
-    display: table;
-    text-align: left;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+`;
+
+const CategoryItem = styled.li`
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    width: 160px;
+    height: 320px;
+    box-sizing: border-box;
 `;
 
 const ItemLink = styled(Link)`
@@ -17,6 +27,8 @@ const ItemLink = styled(Link)`
     &:hover {
         text-decoration: underline;
     }
+    display: flex;
+    flex-direction: column;
 `;
 
 const NewItemButton = styled.button`
@@ -53,11 +65,16 @@ const CategoryDetail = (props) => {
             <Header>{categoryData.category.name}</Header>
             <CategoryItems>
                 {categoryData.category_items.map((categoryItem) => {
-                    return <li key={categoryItem._id}  >
+                    return <CategoryItem key={categoryItem._id}  >
                                     <ItemLink to={`/item/${categoryItem._id}`}>
-                                            <span>{categoryItem.name} -</span>
-                                    </ItemLink> {categoryItem.stock} in stock
-                            </li>
+                                            {(categoryItem.image_filename === '') ?
+                                             (<img src={`${serverRoot}images/default.png`}/>) :
+                                             (<img src={`${serverRoot}images/${categoryItem.image_filename}`}/>)
+                                            } 
+                                            <span>{categoryItem.name}</span>
+                                            <span>{categoryItem.stock} in stock</span>
+                                    </ItemLink>
+                            </CategoryItem>
                 })}                
             </CategoryItems>
             <NewItemButton><NewItemLink to={`/category/${id}/create_item`}>New Item</NewItemLink></NewItemButton>
