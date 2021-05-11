@@ -48,8 +48,6 @@ exports.category_create_item = [
    //Process request after validation and sanitization
    (req, res, next) => {
 
-        console.log(req.file);
-
        // Extract validation errors from request if any
        const errors = validationResult(req);
 

@@ -33,6 +33,10 @@ const ItemDetail = (props) => {
         (itemData && (
         <div className='ItemDetail'>
             <h2>{itemData.name}</h2>
+            {(itemData.image_filename === '') ?
+             (<img src={`${serverRoot}images/default.png`}/>) :
+             (<img src={`${serverRoot}images/${itemData.image_filename}`}/>)
+            } 
             <p>{itemData.weight_num} {itemData.weight_unit}</p>
             <Price>${itemData.price}</Price>
             <p>In Stock: {itemData.stock}</p>
