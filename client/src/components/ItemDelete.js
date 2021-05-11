@@ -43,7 +43,10 @@ const ItemDelete = (props) => {
             headers: {
                 'Content-type': 'application/json'
             },
-            body: JSON.stringify({ itemID: itemData._id })
+            body: JSON.stringify({ 
+                itemID: itemData._id,
+                filename:  itemData.image_filename
+            })
         })
         .then((res) => {
             console.log(res);

@@ -1,6 +1,7 @@
 const { body, validationResult } = require('express-validator');
 const Category = require('../models/category');
 const Item = require('../models/item');
+const fs = require('fs');
 
 const async = require('async');
 
@@ -75,8 +76,12 @@ exports.item_delete = (req, res, next) => {
             // Successful, so delete
             Item.findByIdAndRemove(req.body.itemID, (err) => {
                 if (err) { return next(err); }
-                // Success - go to category display -- Handled in front-end
-                console.log("You get in here");
+                if (req.body.filename !== '') {
+                    fs.unlink(`public/images/${req.body.filename}`, (err) => {
+                        if (err) console.log(err);
+                        console.log('Image successfully deleted');
+                    });
+                }
                 res.json({
                     message: 'Item deleted successfully!'
                 });

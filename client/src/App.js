@@ -26,8 +26,7 @@ const App = () => {
     stock: 0
   }
 
-  //const serverRoot = 'https://ancient-beyond-65897.herokuapp.com/';
-  const serverRoot = 'http://localhost:9000/';
+  const serverRoot = 'https://ancient-beyond-65897.herokuapp.com/';
 
 
   const [indexData, setIndexData] = useState([]);
