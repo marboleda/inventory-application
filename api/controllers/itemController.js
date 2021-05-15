@@ -52,7 +52,8 @@ exports.item_update_post = [
                         price: req.body.price,
                         stock: req.body.stock,
                         _id: req.params.id,
-                        category: results.currentItemState.category
+                        category: results.currentItemState.category,
+                        image_filename: req.file.filename
                         }
                     );
 

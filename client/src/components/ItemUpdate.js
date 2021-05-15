@@ -25,8 +25,7 @@ const ItemUpdate = (props) => {
     const [weightUnit, setWeightUnit] = useState('');
     const [price, setPrice] = useState(-1);
     const [stock, setStock] = useState(-1);
-    const [imageFilename, setImageFilename] = useState('');
-  
+    const [imageFileName, setImageFileName] = useState('');
 
     useEffect(() => {
         fetch(`${serverRoot}item/${id}`, {mode: 'cors'})
@@ -38,11 +37,14 @@ const ItemUpdate = (props) => {
             setWeightUnit(res.weight_unit);
             setPrice(res.price);
             setStock(res.stock);
+            setImageFileName(res.image_filename);
         });
     }, []);
 
     const postData = (e) => {
         e.preventDefault();
+
+        /*
         const itemObject = {
             name: e.target.name.value,
             weight_num: e.target.weight_num.value,
@@ -50,13 +52,21 @@ const ItemUpdate = (props) => {
             price: e.target.price.value,
             stock: e.target.stock.value
         }
+        */
+
+        const formData = new FormData();
+
+        formData.append('name', name);
+        formData.append('weight_num', weightNum);
+        formData.append('weight_unit', weightUnit);
+        formData.append('price', price);
+        formData.append('stock', stock);
+        formData.append('itemImage', imageFileName);
+
         fetch(`${serverRoot}item/${id}`, {
             mode: 'cors', 
             method: 'post', 
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(itemObject)
+            body: formData
         })
         .then((res) => {
             console.log(res);
@@ -82,6 +92,9 @@ const ItemUpdate = (props) => {
             case 'stock':
                 setStock(inputValue);
                 break;
+            case 'image':
+                setImageFileName(e.target.files[0]);
+                break;
         }
     }
 
@@ -89,7 +102,7 @@ const ItemUpdate = (props) => {
         (itemData && (
         <div className='ItemUpdate'>
             <h2>Update Item</h2>
-            <UpdateForm onSubmit={postData}>
+            <UpdateForm onSubmit={postData} encType='multipart/form-data'>
                 <div>
                     <label for='name'>Name:</label>
                     <input name='name' type='text' value={name} onChange={(e) => handleChange(e, 'name')} required />
@@ -121,7 +134,12 @@ const ItemUpdate = (props) => {
                 <div>
                     <label for='stock'>In Stock:</label>
                     <input name='stock' type='number' step='1' value={stock} onChange={(e) => handleChange(e, 'stock')}/>
-                </div>               
+                </div>      
+
+                <div>
+                    <label for='itemImage'>Image:</label>
+                    <input name='itemImage' type='file' onChange={(e) => handleChange(e, 'image')} />
+                </div>         
 
                 <SubmitButton type="submit">Submit</SubmitButton>
             </UpdateForm>
