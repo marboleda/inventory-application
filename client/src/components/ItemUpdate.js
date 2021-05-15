@@ -25,6 +25,7 @@ const ItemUpdate = (props) => {
     const [weightUnit, setWeightUnit] = useState('');
     const [price, setPrice] = useState(-1);
     const [stock, setStock] = useState(-1);
+    const [imageFilename, setImageFilename] = useState('');
   
 
     useEffect(() => {
