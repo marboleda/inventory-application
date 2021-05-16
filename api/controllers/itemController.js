@@ -59,8 +59,16 @@ exports.item_update_post = [
 
                     Item.findByIdAndUpdate(req.params.id, item, {}, (err, item) => {
                         if (err) { return next(err); }
-                        // Successful - redirect to Item Detail page
-                        res.redirect(item.url);
+                        // Successful - remove old image if new one was supplied and redirect to Item Detail page
+                        if (req.body.filename !== '') {
+                            fs.unlink(`public/images/${item.image_filename}`, (err) => {
+                                if (err) console.log(err);
+                                console.log('Image successfully updated');
+                            });
+                        }
+                        res.json({
+                            message: 'Item updated successfully!'
+                        });
                     });                    
                 }
                }
