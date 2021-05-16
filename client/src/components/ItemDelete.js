@@ -22,7 +22,7 @@ const ItemName = styled.span`
 const ItemDelete = (props) => {
 
     const { id } = useParams();
-    const { serverRoot } = props;
+    const { serverRoot, clientRoot } = props;
     let categoryURL, itemURL;
 
     const [itemData, setItemData] = useState(null);
@@ -50,13 +50,13 @@ const ItemDelete = (props) => {
         })
         .then((res) => {
             console.log(res);
-            categoryURL = `${serverRoot}category/${itemData.category}`;
+            categoryURL = `${clientRoot}category/${itemData.category}`;
             window.location.href = categoryURL;
         });
     }
 
     const cancelDelete = (e) => {
-        itemURL = `${serverRoot}item/${itemData._id}`;
+        itemURL = `${clientRoot}item/${itemData._id}`;
         window.location.href = itemURL;
     }
 

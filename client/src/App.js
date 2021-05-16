@@ -26,8 +26,8 @@ const App = () => {
     stock: 0
   }
 
-  //const serverRoot = 'https://ancient-beyond-65897.herokuapp.com/';
-  const serverRoot = 'http://localhost:9000/';
+  const serverRoot = 'https://ancient-beyond-65897.herokuapp.com/';
+  const clientRoot = 'https://shielded-island-77030.herokuapp.com/';
 
 
 
@@ -60,23 +60,31 @@ const App = () => {
           </Route>
           <Route exact 
                 path={`/category/:id`}>
-                  <CategoryDetail serverRoot={serverRoot} />
+                  <CategoryDetail 
+                    serverRoot={serverRoot} />
           </Route>
           <Route exact
                  path={`/category/:id/create_item`}>
-                   <ItemCreate serverRoot={serverRoot} />
+                   <ItemCreate 
+                      serverRoot={serverRoot}
+                      clientRoot={clientRoot} />
           </Route>
           <Route exact 
                  path={`/item/:id`}>
-                   <ItemDetail serverRoot={serverRoot} />
+                   <ItemDetail 
+                      serverRoot={serverRoot} />
           </Route>
           <Route exact
                  path={`/item/:id/update`}>
-                   <ItemUpdate serverRoot={serverRoot} />
+                   <ItemUpdate 
+                      serverRoot={serverRoot}
+                      clientRoot={clientRoot} />
           </Route>
           <Route exact
                  path={`/item/:id/delete`}>
-                   <ItemDelete serverRoot={serverRoot} />
+                   <ItemDelete 
+                      serverRoot={serverRoot}
+                      clientRoot={clientRoot} />
           </Route>
         </Switch>
       </BrowserRouter>

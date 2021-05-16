@@ -21,8 +21,9 @@ const SubmitButton = styled(FormButton)`
 const ItemCreate = (props) => {
 
     const { id } = useParams();
-    const categoryURL = `${window.location.protocol}\/\/${window.location.hostname}:${window.location.port}/category/${id}`
-    const { serverRoot } = props;
+    const { serverRoot, clientRoot } = props;
+    const categoryURL = `${clientRoot}category/${id}`
+
 
     const [categoryData, setCategoryData] = useState(null);
 

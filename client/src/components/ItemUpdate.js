@@ -16,8 +16,8 @@ const SubmitButton = styled(FormButton)`
 const ItemUpdate = (props) => {
 
     const { id } = useParams();
-    const { serverRoot } = props;
-    const itemURL = `${serverRoot}item/${id}`
+    const { serverRoot, clientRoot } = props;
+    const itemURL = `${clientRoot}item/${id}`
 
     const [itemData, setItemData] = useState(null);
     const [name, setName] = useState('');
