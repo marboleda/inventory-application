@@ -16,20 +16,8 @@ const LoadingMessage = styled.p`
 
 const App = () => {
 
-  const emptyItemObject = {
-    _id: '0',
-    name: '',
-    weight_num: 0,
-    weight_unit: "g",
-    price: 0,
-    category: '0',
-    stock: 0
-  }
-
   const serverRoot = 'https://ancient-beyond-65897.herokuapp.com/';
   const clientRoot = 'https://shielded-island-77030.herokuapp.com/';
-
-
 
   const [indexData, setIndexData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
